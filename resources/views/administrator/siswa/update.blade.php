@@ -55,7 +55,7 @@
 
                             <div class="row clearfix">
                                 <div class="col-sm-12 @error('jurusan') focused error @enderror">
-                                    <select class="form-control show-tick" name="kelas_id">
+                                    <select class="form-control show-tick" name="jurusan">
                                         <option value="{{ $edtsiswa->jurusan }}">{{ $edtsiswa->jurusan }}</option>
                                         <option value="IPA">IPA</option>
                                         <option value="IPS">IPS</option>
@@ -117,7 +117,6 @@
                                     <label class="error">{{ $message }}</label>
                                 @enderror
                             </div>
-
 
                             <div class="form-group">
 

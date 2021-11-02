@@ -17,9 +17,27 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <h2>
-                            DAFTAR RAPORT
-                        </h2>
+
+                            <div class="row clearfix justify-content-center">
+                                <div class="col-sm-3">
+                                    <select class="form-control show-tick" name="tahun">
+                                        <option value="">-- Please select Tahun Pelajaran --</option>
+                                        <option value="IPA">IPA</option>
+                                        <option value="IPS">IPS</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control show-tick" name="jurusan">
+                                        <option value="">-- Please select Semester --</option>
+                                        <option value="IPA">IPA</option>
+                                        <option value="IPS">IPS</option>
+                                    </select>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
+                                    <i class="material-icons">search</i>
+                                </button>
+                            </div>
+
                     </div>
                     <div class="body">
                         <div class="table-responsive">
@@ -29,6 +47,8 @@
                                         <th>No</th>
                                         <th>NIS</th>
                                         <th>Nama</th>
+                                        <th>Tahun</th>
+                                        <th>Semester</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -39,10 +59,16 @@
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $item->nis }}</td>
                                         <td>{{ $item->nama }}</td>
+                                        <td>{{ $item->tahun }}</td>
+                                        <td>{{ $item->semester }}</td>
                                         <td>
-                                            <a href="{{ route('guru.update', $item->id) }}" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float">
-                                                <i class="material-icons">edit</i>
+                                            <a href="{{ route('guru.create', $item->id) }}" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float">
+                                                <i class="material-icons">archive</i>
                                             </a>
+                                            <a href="{{ route('guru.update', $item->id) }}" class="btn bg-light-green btn-circle waves-effect waves-circle waves-float" data-toggle="modal" data-target="#largeModal">
+                                                <i class="material-icons">pageview</i>
+                                            </a>
+
                                         </td>
                                     </tr>
                                     @endforeach
@@ -54,11 +80,5 @@
                 </div>
             </div>
         </div>
-        <script language="JavaScript" type="text/javascript">
-            function checkDelete(){
-                return confirm('Are you sure delete this data?');
-            }
-            </script>
-        <!-- #END# Basic Examples -->
-
+        @include('layouts.guru.modal')
 @endsection

@@ -23,16 +23,38 @@
     <!-- Animation Css -->
     <link href=" {{ asset('plugins/animate-css/animate.css') }} " rel="stylesheet" />
 
-    <!-- JQuery DataTable Css -->
-    <link href="{{ asset('plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{{ asset('plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="{{ asset('plugins/bootstrap-datepicker/css/bootstrap-datepicker.css') }}" rel="stylesheet" />
+
+    <!-- Colorpicker Css -->
+    <link href="{{ asset('plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}" rel="stylesheet" />
+
+    <!-- Dropzone Css -->
+    <link href="{{ asset('plugins/dropzone/dropzone.css') }}" rel="stylesheet">
+
+    <!-- Multi Select Css -->
+    <link href="{{ asset('plugins/multi-select/css/multi-select.css') }}" rel="stylesheet">
+
+    <!-- Bootstrap Spinner Css -->
+    <link href="{{ asset('plugins/jquery-spinner/css/bootstrap-spinner.css') }}" rel="stylesheet">
+
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="{{ asset('plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet">
+
+    <!-- Bootstrap Select Css -->
+    <link href="{{ asset('plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet" />
+
+    <!-- noUISlider Css -->
+    <link href="{{ asset('plugins/nouislider/nouislider.min.css') }}" rel="stylesheet" />
 
     <!-- Custom Css -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{ asset('css/themes/all-themes.css') }}" rel="stylesheet" />
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
 </head>
 
@@ -66,33 +88,38 @@
     <!-- Slimscroll Plugin Js -->
     <script src="{{ asset('plugins/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
 
+    <!-- Bootstrap Colorpicker Js -->
+    <script src="{{ asset('plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js') }}"></script>
+
+    <!-- Dropzone Plugin Js -->
+    <script src="{{ asset('plugins/dropzone/dropzone.js') }}"></script>
+
+    <!-- Input Mask Plugin Js -->
+    <script src="{{ asset('plugins/jquery-inputmask/jquery.inputmask.bundle.js') }}"></script>
+
+    <!-- Multi Select Plugin Js -->
+    <script src="{{ asset('plugins/multi-select/js/jquery.multi-select.js') }}"></script>
+
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="{{ asset('plugins/jquery-spinner/js/jquery.spinner.js') }}"></script>
+
+    <!-- Bootstrap Tags Input Plugin Js -->
+    <script src="{{ asset('plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
+
+    <!-- noUISlider Plugin Js -->
+    <script src="{{ asset('plugins/nouislider/nouislider.js') }}"></script>
+
     <!-- Waves Effect Plugin Js -->
     <script src="{{ asset('plugins/node-waves/waves.js') }}"></script>
 
-    <!-- Jquery DataTable Plugin Js -->
-    <script src="{{ asset('plugins/jquery-datatable/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.flash.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/jszip.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.html5.min.js') }} "></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
-
     <!-- Custom Js -->
     <script src="{{ asset('js/admin.js') }}"></script>
-    <script src="{{ asset('js/pages/tables/jquery-datatable.js') }}"></script>
+    <script src="{{ asset('js/pages/forms/advanced-form-elements.js') }}"></script>
 
     <!-- Demo Js -->
     <script src="{{ asset('js/demo.js') }}"></script>
 
-    <!-- Bootstrap Notify Plugin Js -->
-    <script src="{{ asset('plugins/bootstrap-notify/bootstrap-notify.js') }}"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
     <script type="text/javascript">
         $(function(){
@@ -115,7 +142,6 @@
             }
         }
     </script>
-    {{-- <script>$('.selectpicker').selectpicker();</script> --}}
 </body>
 
 </html>

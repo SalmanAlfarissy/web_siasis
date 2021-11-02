@@ -23,16 +23,23 @@
     <!-- Animation Css -->
     <link href=" {{ asset('plugins/animate-css/animate.css') }} " rel="stylesheet" />
 
-    <!-- JQuery DataTable Css -->
-    <link href="{{ asset('plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{{ asset('plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="{{ asset('plugins/bootstrap-datepicker/css/bootstrap-datepicker.css') }}" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="{{ asset('plugins/waitme/waitMe.css') }}" rel="stylesheet" />
+
+     <!-- Bootstrap Select Css -->
+     <link href="{{ asset('plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet" />
 
     <!-- Custom Css -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{ asset('css/themes/all-themes.css') }}" rel="stylesheet" />
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
 </head>
 
@@ -69,16 +76,17 @@
     <!-- Waves Effect Plugin Js -->
     <script src="{{ asset('plugins/node-waves/waves.js') }}"></script>
 
-    <!-- Jquery DataTable Plugin Js -->
-    <script src="{{ asset('plugins/jquery-datatable/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.flash.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/jszip.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.html5.min.js') }} "></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
+    <!-- Autosize Plugin Js -->
+    <script src="{{ asset('plugins/autosize/autosize.js') }}"></script>
+
+    <!-- Moment Plugin Js -->
+    <script src="{{ asset('plugins/momentjs/moment.js') }}"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="{{ asset('plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+
+    <!-- Bootstrap Datepicker Plugin Js -->
+    <script src="{{ asset('plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
 
     <!-- Custom Js -->
     <script src="{{ asset('js/admin.js') }}"></script>
@@ -91,8 +99,6 @@
     <script src="{{ asset('plugins/bootstrap-notify/bootstrap-notify.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
     <script type="text/javascript">
         $(function(){
@@ -115,7 +121,6 @@
             }
         }
     </script>
-    {{-- <script>$('.selectpicker').selectpicker();</script> --}}
 </body>
 
 </html>

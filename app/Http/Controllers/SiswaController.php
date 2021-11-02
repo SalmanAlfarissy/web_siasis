@@ -107,7 +107,6 @@ class SiswaController extends Controller
 
     public function update(Request $request,$id)
     {
-        //
 
         $validated = $request->validate([
 
@@ -127,7 +126,7 @@ class SiswaController extends Controller
         $dtupdate -> email = $validated['email'];
         $dtupdate -> gender = $validated['gender'];
         $dtupdate -> staf_id = $validated['staf_id'];
-        $dtupdate -> jurusan = ($request-> jurusan != "") ? $request-> jurusan : "";
+        $dtupdate -> jurusan = $request->jurusan;
         $dtupdate -> kelas_id = $validated['kelas_id'];
         $dtupdate -> status = $validated['status'];
 
