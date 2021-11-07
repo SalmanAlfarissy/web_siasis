@@ -65,7 +65,7 @@
                                             <a href="{{ route('guru.create', $item->id) }}" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float">
                                                 <i class="material-icons">archive</i>
                                             </a>
-                                            <a href="{{ route('guru.update', $item->id) }}" class="btn bg-light-green btn-circle waves-effect waves-circle waves-float" data-toggle="modal" data-target="#largeModal">
+                                            <a href="{{ route('guru.show', $item->id) }}" class="btn bg-light-green btn-circle waves-effect waves-circle waves-float">
                                                 <i class="material-icons">pageview</i>
                                             </a>
 
@@ -80,5 +80,4 @@
                 </div>
             </div>
         </div>
-        @include('layouts.guru.modal')
 @endsection

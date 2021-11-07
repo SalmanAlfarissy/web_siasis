@@ -114,7 +114,7 @@ Route::group(['middleware'=>['guru'],'prefix'=>'/guru'],function() {
     Route::prefix('/raport')->group(function(){
         Route::get('/',[RaportController::class,'raport'])->name('guru.raport');
         Route::get('/create/{id}',[RaportController::class,'create'])->name('guru.create');
-        Route::get('/show/{id}',[RaportController::class,'view'])->name('guru.view');
+        Route::get('/show/{id}',[RaportController::class,'show'])->name('guru.show');
         Route::post('/store',[RaportController::class,'store'])->name('guru.store');
         Route::get('/edit/{id}',[RaportController::class,'edit'])->name('guru.edit');
         Route::put('/update/{id}',[RaportController::class,'update'])->name('guru.update');
