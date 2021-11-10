@@ -17,6 +17,8 @@ class RaportController extends Controller
 
         $siswa = Siswa::where('status','Siswa')
             ->where('siswas.staf_id',session('guru.id'))
+            ->where('semester.semester',request()->semester)
+            ->where('semester.tahun',request()->tahun)
             ->join('stafs', 'stafs.id', '=', 'siswas.staf_id')
             ->join('kelas', 'kelas.id', '=', 'siswas.kelas_id')
             ->join('pelajarans', 'pelajarans.id', '=', 'siswas.kelas_id')

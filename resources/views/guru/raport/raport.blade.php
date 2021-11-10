@@ -18,25 +18,33 @@
                 <div class="card">
                     <div class="header">
 
-                            <div class="row clearfix justify-content-center">
+                            <form class="row clearfix justify-content-center" action="{{ route('guru.raport') }}">
                                 <div class="col-sm-3">
                                     <select class="form-control show-tick" name="tahun">
-                                        <option value="">-- Please select Tahun Pelajaran --</option>
-                                        <option value="IPA">IPA</option>
-                                        <option value="IPS">IPS</option>
+                                        @foreach ($semester as $index=>$item)
+                                        <option value={{ ($item->tahun == request()->tahun) ? $item->tahun : "" }}>{{ ($item->tahun == request()->tahun) ? $item->tahun." / ".$item->tahun+1 : "-- Please select Tahun Pelajaran --" }}</option>
+                                        @endforeach
+
+                                        @foreach ($semester as $index=>$item)
+                                        <option value="{{ $item->tahun }}">{{ $item->tahun }} / {{ $item->tahun+1 }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
-                                    <select class="form-control show-tick" name="jurusan">
-                                        <option value="">-- Please select Semester --</option>
-                                        <option value="IPA">IPA</option>
-                                        <option value="IPS">IPS</option>
+                                    <select class="form-control show-tick" name="semester">
+
+                                        @foreach ($semester as $index=>$item)
+                                        <option value={{ ($item->semester == request()->semester) ? $item->semester : "" }}>{{ ($item->semester == request()->semester) ? $item->semester : "-- Please select semester --" }}</option>
+                                        @endforeach
+                                        @foreach ($semester as $index=>$item)
+                                        <option value="{{ $item->semester }}">{{ $item->semester }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
-                                <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
+                                <button type="submit" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
                                     <i class="material-icons">search</i>
                                 </button>
-                            </div>
+                            </form>
 
                     </div>
                     <div class="body">
@@ -59,7 +67,7 @@
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $item->nis }}</td>
                                         <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->tahun }}</td>
+                                        <td>{{ $item->tahun }} / {{ $item->tahun+1 }}</td>
                                         <td>{{ $item->semester }}</td>
                                         <td>
                                             <a href="{{ route('guru.create', $item->id) }}" class="btn bg-light-blue btn-circle waves-effect waves-circle waves-float">

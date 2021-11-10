@@ -9,8 +9,10 @@ use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\MatpelController;
 use App\Http\Controllers\RaportController;
 use App\Http\Controllers\SemesterController;
+use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\PelajaranController;
+use App\Http\Controllers\LoginSiswaController;
 use App\Http\Controllers\AdministratorController;
 
 /*
@@ -25,7 +27,6 @@ use App\Http\Controllers\AdministratorController;
 */
 
 //Staf
-
 Route::group(['middleware'=>['admin'],'prefix'=>'/administrator'],function() {
     Route::get('/home',[AdministratorController::class,'index'])->name('admin.home');
     Route::prefix('/staf')->group(function () {
@@ -118,13 +119,24 @@ Route::group(['middleware'=>['guru'],'prefix'=>'/guru'],function() {
         Route::post('/store',[RaportController::class,'store'])->name('guru.store');
         Route::get('/edit/{id}',[RaportController::class,'edit'])->name('guru.edit');
         Route::put('/update/{id}',[RaportController::class,'update'])->name('guru.update');
+        Route::put('/cetak',[RaportController::class,'cetak'])->name('guru.cetak');
     });
-
 });
 
-
 // ===========================================================================================================================================================
+// siswa
+Route::group(['middleware'=>['siswa'],'prefix'=>'/siswa'],function() {
+    Route::get('/home',[DataSiswaController::class,'index'])->name('siswa.home');
+    Route::get('/jadwal',[DataSiswaController::class,'pelajaran'])->name('siswa.pelajaran');
+    Route::get('/raport',[DataSiswaController::class,'raport'])->name('siswa.raport');
+    Route::get('/cetak',[DataSiswaController::class,'cetak'])->name('siswa.cetak');
+});
 
+Route::get('/siswa/login', [LoginSiswaController::class,'index'])->name('siswa.login');
+Route::post('/siswa/login',[LoginSiswaController::class,'authenticate'])->name('siswa.aut');
+Route::get('/siswa/logout',[LoginSiswaController::class,'logout'])->name('siswa.logout');
+
+//============================================================================================================================================================
 // Login
 
 Route::get('/staf/login', [LoginController::class,'index'])->name('staf.login');

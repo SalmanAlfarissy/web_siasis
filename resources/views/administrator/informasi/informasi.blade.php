@@ -57,7 +57,7 @@
                                     <tr>
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $item->judul_info }}</td>
-                                        <td>{{ $item->tgl_post }}</td>
+                                        <td>{{ date('l,d F Y', strtotime($item->tgl_post)) }}</td>
                                         <td><?= $item->isi_info ?></td>
                                         <td> <img src="{{ asset('gambar/informasi/'.$item->gambar_info) }}" height="50%" width="50%" alt="" srcset=""></td>
 
