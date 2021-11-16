@@ -48,6 +48,20 @@
                     </a>
                 </li>
 
+                <li class="{{ ($page == 'Alumni') ? 'active' : '' }}">
+                    <a href="{{ route('siswa.alumni') }}">
+                        <i class="material-icons">school</i>
+                        <span>Alumni</span>
+                    </a>
+                </li>
+
+                <li class="{{ ($page == 'Guru') ? 'active' : '' }}">
+                    <a href="{{ route('siswa.guru') }}">
+                        <i class="material-icons">account_balance_wallet</i>
+                        <span>Guru</span>
+                    </a>
+                </li>
+
             </ul>
 
         </div>

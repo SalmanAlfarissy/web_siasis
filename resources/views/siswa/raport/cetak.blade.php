@@ -6,8 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ request()->semester }} ({{ request()->tahun }}/{{ request()->tahun+1 }})</title>
+    <style>
+        .body{
+            background-image: url(../public/images/logo.png);
+            background-size: 40%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100%;
+            padding: 0%;
+        }
+        .title{
+            text-align: center;
+            font-size: 2.5em;
+            color: #000;
+        }
+
+    </style>
 </head>
-<body>
+<body class="body">
     <?php
     function penyebut($nilai) {
             $nilai = abs($nilai);
@@ -47,8 +64,6 @@
         }
     ?>
 
-
-
     <div>
         <div>
             <div>
@@ -67,7 +82,7 @@
             </div>
         </div>
         <div style="align-content: center;"><br/>
-            <table style="margin-left:auto;margin-right:auto" border="1" width="100%">
+            <table style="margin-left:auto;margin-right:auto" border="1" cellspacing="0" cellpadding="0" width="100%">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -82,12 +97,12 @@
                 <tbody>
                     @foreach ($raport as $index=>$item)
                     <tr>
-                        <td>{{ $index+1 }}</td>
+                        <td align="center">{{ $index+1 }}</td>
                         <td>{{ $item->pelajaran }}</td>
-                        <td>{{ $item->kkm }}</td>
-                        <td>{{ $item->nilai }}</td>
+                        <td align="center">{{ $item->kkm }}</td>
+                        <td align="center">{{ $item->nilai }}</td>
                         <td>{{ terbilang($item->nilai) }}</td>
-                        <td>
+                        <td align="center">
                             @if($item->nilai < $item->kkm)
                                 Rendah
                             @elseif ($item->nilai >= $item->kkm && $item->nilai <= 90)

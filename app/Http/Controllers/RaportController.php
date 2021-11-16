@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kelas;
-use App\Models\Raport;
+
+use PDF;
 use App\Models\Siswa;
-use App\Models\Semester;
+
+use App\Models\Raport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 
 class RaportController extends Controller
 {
@@ -59,6 +61,7 @@ class RaportController extends Controller
 
     public function store(Request $request){
         // return request()->all();
+        
         $pelajaran = $request->pelajaran;
         foreach($pelajaran as $index=>$item){
 
@@ -86,10 +89,11 @@ class RaportController extends Controller
 
         $raport = DB::table('raports')
             ->where('siswa_id',$id)
+            ->orderBy('id','desc')
             ->join('pelajarans','pelajarans.id','raports.pelajaran_id')
             ->leftJoin('semester', 'semester.id', '=', 'pelajarans.semester_id')
             ->leftJoin('matpel', 'matpel.id', '=', 'pelajarans.matpel_id')
-            ->select('matpel.nama_pelajaran as pelajaran','semester.semester','pelajarans.kkm','raports.nilai')
+            ->select('raports.id as id','matpel.nama_pelajaran as pelajaran','semester.semester','semester.tahun','pelajarans.kkm','raports.nilai')
             ->get();
 
         return view('guru.raport.show',[
@@ -145,6 +149,45 @@ class RaportController extends Controller
         // return $update;
         return redirect('/guru/raport/show/'.$id)->with('success','Update data successfully!!');
 
+    }
+
+    public function cetak(){
+        $siswa=Siswa::find(request()->siswa);
+
+        $semester=DB::table('raports')
+            ->where('siswa_id',request()->siswa)
+            ->join('pelajarans','pelajarans.id','raports.pelajaran_id')
+            ->join('kelas','kelas.id','pelajarans.kelas_id')
+            ->leftJoin('semester', 'semester.id', '=', 'pelajarans.semester_id')
+            ->leftJoin('matpel', 'matpel.id', '=', 'pelajarans.matpel_id')
+            ->select('kelas.nama_kelas as kelas','semester.tahun as tahun','semester.semester as semester')
+            ->first();
+
+        $raport = DB::table('raports')
+            ->where('siswa_id',request()->siswa)
+            ->where('semester',request()->semester)
+            ->where('tahun',request()->tahun)
+            ->join('pelajarans','pelajarans.id','raports.pelajaran_id')
+            ->leftJoin('semester', 'semester.id', '=', 'pelajarans.semester_id')
+            ->leftJoin('matpel', 'matpel.id', '=', 'pelajarans.matpel_id')
+            ->select('matpel.nama_pelajaran as pelajaran','semester.semester','semester.tahun as tahun','pelajarans.kkm','raports.nilai','raports.created_at')
+            ->get();
+
+        $guru = DB::table('siswas')
+            ->where('siswas.id',request()->siswa)
+            ->join('stafs','stafs.id','siswas.staf_id')
+            ->select('stafs.nama as nama_walikelas')
+            ->first();
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf = PDF::loadView('siswa.raport.cetak', [
+            'raport'=>$raport,
+            'semester'=>$semester,
+            'siswa'=>$siswa,
+            'guru'=>$guru,
+            'page'=>'Raport'
+        ]);
+        return $pdf->stream();
     }
 
 }

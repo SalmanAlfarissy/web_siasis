@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Pelajaran;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
@@ -110,6 +110,9 @@ Route::group(['middleware'=>['admin'],'prefix'=>'/administrator'],function() {
 // guru
 Route::group(['middleware'=>['guru'],'prefix'=>'/guru'],function() {
     Route::get('/home',[AdministratorController::class,'index'])->name('guru.home');
+    Route::get('/event/{id}',[AdministratorController::class,'event'])->name('guru.event');
+    Route::get('/guru',[AdministratorController::class,'list_guru'])->name('guru.guru');
+    Route::get('/alumni',[AdministratorController::class,'alumni'])->name('guru.alumni');
     Route::get('/siswa',[SiswaController::class,'siswa'])->name('guru.siswa');
     Route::get('/jadwal',[PelajaranController::class,'pelajaran'])->name('guru.pelajaran');
     Route::prefix('/raport')->group(function(){
@@ -119,7 +122,7 @@ Route::group(['middleware'=>['guru'],'prefix'=>'/guru'],function() {
         Route::post('/store',[RaportController::class,'store'])->name('guru.store');
         Route::get('/edit/{id}',[RaportController::class,'edit'])->name('guru.edit');
         Route::put('/update/{id}',[RaportController::class,'update'])->name('guru.update');
-        Route::put('/cetak',[RaportController::class,'cetak'])->name('guru.cetak');
+        Route::get('/cetak',[RaportController::class,'cetak'])->name('guru.cetak');
     });
 });
 
@@ -128,7 +131,10 @@ Route::group(['middleware'=>['guru'],'prefix'=>'/guru'],function() {
 Route::group(['middleware'=>['siswa'],'prefix'=>'/siswa'],function() {
     Route::get('/home',[DataSiswaController::class,'index'])->name('siswa.home');
     Route::get('/jadwal',[DataSiswaController::class,'pelajaran'])->name('siswa.pelajaran');
+    Route::get('/event/{id}',[AdministratorController::class,'event'])->name('siswa.event');
     Route::get('/raport',[DataSiswaController::class,'raport'])->name('siswa.raport');
+    Route::get('/alumni',[DataSiswaController::class,'alumni'])->name('siswa.alumni');
+    Route::get('/guru',[DataSiswaController::class,'guru'])->name('siswa.guru');
     Route::get('/cetak',[DataSiswaController::class,'cetak'])->name('siswa.cetak');
 });
 

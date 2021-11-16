@@ -52,21 +52,23 @@ function penyebut($nilai) {
             <h2>
                 RAPORT
             </h2>
-            <div style='text-align:right;'> <a href="{{ route('guru.home') }}"> Administrator Siasis Mobile </a>/  </div>
+            <div style='text-align:right;'> <a href="{{ route('guru.home') }}"> Guru</a>/Raport  </div>
         </div>
 
-        <div class="button-demo">
+        <form class="button-demo" action="{{ route('guru.cetak') }}" target="_blank">
+            <input type="hidden" value="{{ $siswa->id }}" name="siswa">
+            <input type="hidden" value="{{ $semester->semester }}" name="semester">
+            <input type="hidden" value="{{ $semester->tahun }}" name="tahun">
             <a href="{{ route('guru.raport') }}" class="btn bg-red waves-effect">
                 <i class="material-icons">forward</i>
                 <span>Kembali</span></a></a>
-            <a href="{{ route('guru.raport') }}" class="btn bg-cyan waves-effect">
+            <button type="submit" class="btn bg-cyan waves-effect">
                 <i class="material-icons">print</i>
-                <span>Cetak</span></a>
+                <span>Cetak</span></button>
             <a href="{{ route('guru.edit',$siswa->id) }}" class="btn bg-light-blue waves-effect">
                 <i class="material-icons">create</i>
                 <span>Edit</span></a>
-
-        </div>
+        </form>
 
         <!-- Basic Examples -->
         <div class="row clearfix">

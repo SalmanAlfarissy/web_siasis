@@ -9,7 +9,7 @@
             <h2>
                 RAPORT
             </h2>
-            <div style='text-align:right;'> <a href="{{ route('guru.home') }}"> Administrator Siasis Mobile </a>/  </div>
+            <div style='text-align:right;'> <a href="{{ route('guru.home') }}"> Guru</a>/Raport  </div>
         </div>
 
         <!-- Basic Examples -->

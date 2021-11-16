@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Informasi;
 use App\Models\Staf;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -259,4 +261,32 @@ class AdministratorController extends Controller
         $dthapus->delete();
         return back();
     }
+    public function alumni(){
+        $siswa=Siswa::where('status','Alumni')
+        ->join('alumnis','alumnis.siswa_id','siswas.id')
+        ->get();
+
+        // dd($siswa);
+        return view('guru.alumni.alumni',[
+            'siswa'=>$siswa,
+            'page'=>'Alumni',
+        ]);
+    }
+
+    public function list_guru(){
+        $admin=Staf::where('level', 'guru')->get();
+        return view('guru.guru.guru',[
+        'guru' => $admin,
+        'page' => 'Guru'
+        ]);
+    }
+
+    public function event($id){
+        $event=Informasi::find($id);
+        return view('guru.home.view',[
+        'event' => $event,
+        'page' => 'home'
+        ]);
+    }
+
 }

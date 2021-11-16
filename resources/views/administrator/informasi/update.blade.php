@@ -7,13 +7,15 @@
             <h2>
                 INFORMASI
             </h2>
-            <div style='text-align:right;'> <a href="{{ route('admin.home') }}"> Administrator Siasis Mobile </a>/ </div>
+            <div style='text-align:right;'> <a href="{{ route('admin.home') }}"> Admin</a>/Informasi  </div>
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="body">
                     <div class="button-demo">
-                        <a href="{{ route('admin.staf.informasi') }}" class="btn bg-red waves-effect">Daftar Informasi</a>
+                        <a href="{{ route('admin.staf.informasi') }}" class="btn bg-red waves-effect">
+                            <i class="material-icons">forward</i>
+                            <span>Kembali</span></a>
                     </div>
                 </div>
             </div>

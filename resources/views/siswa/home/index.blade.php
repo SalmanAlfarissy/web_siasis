@@ -57,19 +57,18 @@
                         @foreach ($informasi as $item)
                         <div class="bs-example" data-example-id="media-alignment">
                             <div class="media">
-                                <div class="media-left">
-                                    <a href="javascript:void(0);">
+                                <div class="media-left media-middle align-center">
+                                    <a href="{{ route('siswa.event',$item->id) }}">
                                         <img class="media-object" src="{{ asset('gambar/informasi/'.$item->gambar_info) }}" width="64" height="64">
                                     </a>
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">{{ $item->judul_info }}</h4>
-                                    <p > {!! substr($item->isi_info,0,200) !!}...<a href="" style="text-decoration:none; color: red;">Selanjutnya</a>
+                                    <p > {!! substr($item->isi_info,0,200) !!}...<a href="{{ route('siswa.event',$item->id) }}" style="text-decoration:none; color: red;">Selanjutnya</a>
                                     </p>
 
                                 </div>
                             </div>
-
                         </div>
                         @endforeach
                     </div>

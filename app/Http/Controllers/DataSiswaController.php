@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use App\Models\Semester;
+use App\Models\Staf;
 use PDF;
 use Illuminate\Http\Request;
 
@@ -110,5 +111,36 @@ class DataSiswaController extends Controller
             'page'=>'Raport'
         ]);
         return $pdf->stream();
+    }
+
+    public function alumni(){
+        $siswa=Siswa::where('status','Alumni')
+        ->join('alumnis','alumnis.siswa_id','siswas.id')
+        ->get();
+
+        // dd($siswa);
+        return view('siswa.alumni.alumni',[
+            'siswa'=>$siswa,
+            'page'=>'Alumni',
+        ]);
+    }
+
+    public function guru(){
+        $guru=Staf::where('level','guru')
+        ->get();
+
+        // dd($guru);
+        return view('siswa.guru.guru',[
+            'guru'=>$guru,
+            'page'=>'Guru',
+        ]);
+    }
+
+    public function event($id){
+        $event=Informasi::find($id);
+        return view('siswa.home.view',[
+        'event' => $event,
+        'page' => 'home'
+        ]);
     }
 }

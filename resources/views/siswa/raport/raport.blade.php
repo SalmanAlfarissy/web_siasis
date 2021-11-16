@@ -46,7 +46,7 @@ function penyebut($nilai) {
             <h2>
                 RAPORT
             </h2>
-            <div style='text-align:right;'> <a href="{{ route('siswa.home') }}"> Administrator Siasis Mobile </a>/  </div>
+            <div style='text-align:right;'> <a href="{{ route('siswa.home') }}"> Siswa</a>/Raport  </div>
         </div>
 
         <form class="button-demo" action="{{ route('siswa.cetak')}}" target="_blank">

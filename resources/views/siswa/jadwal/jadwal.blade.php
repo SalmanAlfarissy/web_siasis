@@ -10,7 +10,7 @@
             <h2>
                 JADWAL PELAJARAN
             </h2>
-            <div style='text-align:right;'> <a href="{{ route('siswa.home') }}"> Administrator Siasis Mobile </a>/  </div>
+            <div style='text-align:right;'> <a href="{{ route('siswa.home') }}"> Siswa</a>/Jadwal  </div>
         </div>
 
         <!-- Basic Examples -->
