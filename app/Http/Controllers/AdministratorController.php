@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Informasi;
 use App\Models\Staf;
 use App\Models\Siswa;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -289,4 +290,107 @@ class AdministratorController extends Controller
         ]);
     }
 
+    public function profile($id)
+    {
+        if (session('admin.level')=='admin'){
+            $admin=Staf::find($id);
+            return view('administrator.profile.profile',[
+            "admin"=>$admin,
+            "page"=>"home"
+        ]);
+        }else{
+            $guru=Staf::find($id);
+            return view('guru.profile.profile',[
+            "guru"=>$guru,
+            "page"=>"home"
+        ]);
+        }
+    }
+
+    public function updateprofile(Request $request,$id)
+    {
+        //
+
+        $validated = $request->validate([
+
+            'nama'=>'required|max:255',
+            'email'=>'required|email:dns',
+            'gender'=>'required',
+            'foto_guru'=>'image|max:512|mimes:jpeg,png,jpg,gif,svg'
+
+        ]);
+        $dtupdate=Staf::find($id);
+
+        if (session('admin.level')=='admin'){
+            $dtupdate -> nama = $validated['nama'];
+            $dtupdate -> email = $validated['email'];
+            $dtupdate -> gender = $request-> gender;
+            $dtupdate -> alamat = $request-> alamat;
+            $dtupdate -> tgl_lahir = $request-> tgl_lahir;
+            $dtupdate -> tempat_lahir = $request-> tempat_lahir;
+
+            $gbdefault = $dtupdate->foto_guru;
+            ($request->foto_guru != "") ? $request->foto_guru->move(public_path().'/gambar/administrator',$gbdefault) : asset('gambar/administrator/'.$dtupdate->foto_guru);
+            $dtupdate -> foto_guru = $gbdefault;
+
+            $dtupdate -> save();
+            return redirect('/administrator/profile/'.$id)->with('success','Update data successfully!!');
+        }else{
+            $dtupdate -> nama = $validated['nama'];
+            $dtupdate -> email = $validated['email'];
+            $dtupdate -> gender = $request-> gender;
+            $dtupdate -> alamat = $request-> alamat;
+            $dtupdate -> tgl_lahir = $request-> tgl_lahir;
+            $dtupdate -> tempat_lahir = $request-> tempat_lahir;
+
+            $gbdefault = $dtupdate->foto_guru;
+            ($request->foto_guru != "") ? $request->foto_guru->move(public_path().'/gambar/administrator',$gbdefault) : asset('gambar/administrator/'.$dtupdate->foto_guru);
+            $dtupdate -> foto_guru = $gbdefault;
+
+            $dtupdate -> save();
+            return redirect('/guru/profile/'.$id)->with('success','Update data successfully!!');
+        }
+
+    }
+
+    public function changepass(Request $request,$id){
+
+        $auth = Staf::find($id);
+
+        if (session('admin.level')=='admin'){
+            if (!empty($auth)){
+                if (Hash::check($request->OldPassword, $auth->password)){
+
+                    if ($request->NewPassword == $request->NewPasswordConfirm){
+                        $NewPasswordConfirm = Hash::make($request->NewPasswordConfirm);
+                        $auth->password = $NewPasswordConfirm;
+                        $auth -> save();
+                        session()->flush();
+                        return redirect('/staf/login')->with('success','Update password successfully!!');
+                    }else{
+                        return back()->with('error','focused error');
+                    }
+                }else {
+                    return back()->with('error','focused error');
+                }
+            }
+            return back()->with('error','focused error');
+        }else{
+            if (Hash::check($request->OldPassword, $auth->password)){
+                if ($request->NewPassword == $request->NewPasswordConfirm){
+                    $NewPasswordConfirm = Hash::make($request->NewPasswordConfirm);
+                    $auth->password = $NewPasswordConfirm;
+                    $auth -> save();
+                    session()->flush();
+                    return redirect('/staf/login')->with('success','Update password successfully!!');
+                }else{
+                    return back()->with('error','focused error');
+                }
+            }else {
+                return back()->with('error','focused error');
+            }
+        }
+        return back()->with('error','focused error');
+    }
 }
+

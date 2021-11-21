@@ -7,22 +7,28 @@
         <div class="block-header">
 
             @if (session()->has('success'))
-            <div class="alert bg-green alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                {{ session('success') }}
-            </div>
+                <div class="alert bg-green alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    {{ session('success') }}
+                </div>
             @endif
 
             <h2>
                 ADMINISTRATOR
             </h2>
-            <div style='text-align:right;'> <a href="{{ route('admin.home') }}"> Admin</a>/Staf/Administrator  </div>
+
+            <div style='text-align:right;'> <a href="{{ route('admin.home') }}"> Admin</a>/Staf/Administrator</div>
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="body">
                     <div class="button-demo">
-                        <a href="{{ route('admin.staf.create') }}" class="btn bg-red waves-effect">Add Administrator</a>
+
+                        <a href="{{ route('admin.staf.create') }}" class="btn bg-red waves-effect">
+                            <i class="material-icons">person_add</i>
+                            <span>Add Administrator</span>
+                        </a>
+
                     </div>
                 </div>
             </div>

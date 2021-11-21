@@ -15,7 +15,7 @@
                     <div class="button-demo">
                         <a href="{{ route('admin.staf.admin') }}" class="btn bg-red waves-effect">
                             <i class="material-icons">forward</i>
-                            <span>Kembali</span></a></a>
+                            <span>Kembali</span></a>
                     </div>
                 </div>
             </div>

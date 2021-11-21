@@ -19,9 +19,11 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="body">
-                    <div class="button-demo">
-                        <a href="{{ route('admin.staf.createsemester') }}" class="btn bg-red waves-effect">ADD SEMESTER</a>
-                    </div>
+
+                    <a href="{{ route('admin.staf.createsemester') }}" class="btn bg-red waves-effect">
+                        <i class="material-icons">add</i>
+                        <span>Add Semester</span>
+                    </a>
                 </div>
             </div>
         </div>

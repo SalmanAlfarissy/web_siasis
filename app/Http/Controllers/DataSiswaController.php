@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
+use App\Models\Staf;
 use App\Models\Siswa;
 use App\Models\Semester;
-use App\Models\Staf;
-use PDF;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Hash;
 use function PHPUnit\Framework\isEmpty;
 
 class DataSiswaController extends Controller
@@ -142,5 +143,75 @@ class DataSiswaController extends Controller
         'event' => $event,
         'page' => 'home'
         ]);
+    }
+
+    public function profile($id)
+    {
+        $siswa=DB::table('siswas')
+        ->where('siswas.id',$id)
+        ->join('kelas','kelas.id','siswas.kelas_id')
+        ->select('siswas.*','kelas.nama_kelas as kelas')
+        ->first();
+
+        return view('siswa.profile.profile',[
+        "siswa"=>$siswa,
+        "page"=>"home"]);
+
+    }
+
+    public function updateprofile(Request $request,$id)
+    {
+        //
+
+        $validated = $request->validate([
+
+            'nama'=>'required|max:255',
+            'email'=>'required|email:dns',
+            'gender'=>'required',
+            'foto_siswa'=>'image|max:512|mimes:jpeg,png,jpg,gif,svg'
+
+        ]);
+
+        $dtupdate=Siswa::find($id);
+
+        $dtupdate -> nama = $validated['nama'];
+        $dtupdate -> email = $validated['email'];
+        $dtupdate -> gender = $request-> gender;
+        $dtupdate -> alamat = $request-> alamat;
+        $dtupdate -> tgl_lahir = $request-> tgl_lahir;
+        $dtupdate -> tempat_lahir = $request-> tempat_lahir;
+
+        $gbdefault = $dtupdate->foto_siswa;
+        ($request->foto_siswa != "") ? $request->foto_siswa->move(public_path().'/gambar/siswa',$gbdefault) : asset('gambar/siswa/'.$dtupdate->foto_siswa);
+        $dtupdate -> foto_siswa = $gbdefault;
+
+        $dtupdate -> save();
+        return redirect('/siswa/profile/'.$id)->with('success','Update data successfully!!');
+
+
+    }
+
+    public function changepass(Request $request,$id){
+
+        $auth = Siswa::find($id);
+
+        if (!empty($auth)){
+            if (Hash::check($request->OldPassword, $auth->password)){
+
+                if ($request->NewPassword == $request->NewPasswordConfirm){
+                    $NewPasswordConfirm = Hash::make($request->NewPasswordConfirm);
+                    $auth->password = $NewPasswordConfirm;
+                    $auth -> save();
+                    session()->flush();
+                    return redirect('/siswa/login')->with('success','Update password successfully!!');
+                }else{
+                    return back()->with('error','focused error');
+                }
+            }else {
+                return back()->with('error','focused error');
+            }
+        }
+        return back()->with('error','focused error');
+
     }
 }

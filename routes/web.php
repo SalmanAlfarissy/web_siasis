@@ -14,6 +14,7 @@ use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\PelajaranController;
 use App\Http\Controllers\LoginSiswaController;
 use App\Http\Controllers\AdministratorController;
+use App\Models\Siswa;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,9 @@ use App\Http\Controllers\AdministratorController;
 //Staf
 Route::group(['middleware'=>['admin'],'prefix'=>'/administrator'],function() {
     Route::get('/home',[AdministratorController::class,'index'])->name('admin.home');
+    Route::get('/profile/{id}',[AdministratorController::class,'profile'])->name('admin.profile');
+    Route::put('/updateprofile/{id}',[AdministratorController::class,'updateprofile'])->name('admin.updateprofile');
+    Route::put('/changepass/{id}',[AdministratorController::class,'changepass'])->name('admin.changepass');
     Route::prefix('/staf')->group(function () {
             Route::prefix('/guru')->group(function () {
                 Route::get('/',[AdministratorController::class,'guru'])->name('admin.staf.guru');
@@ -115,6 +119,9 @@ Route::group(['middleware'=>['guru'],'prefix'=>'/guru'],function() {
     Route::get('/alumni',[AdministratorController::class,'alumni'])->name('guru.alumni');
     Route::get('/siswa',[SiswaController::class,'siswa'])->name('guru.siswa');
     Route::get('/jadwal',[PelajaranController::class,'pelajaran'])->name('guru.pelajaran');
+    Route::get('/profile/{id}',[AdministratorController::class,'profile'])->name('guru.profile');
+    Route::put('/updateprofile/{id}',[AdministratorController::class,'updateprofile'])->name('guru.updateprofile');
+    Route::put('/changepass/{id}',[AdministratorController::class,'changepass'])->name('guru.changepass');
     Route::prefix('/raport')->group(function(){
         Route::get('/',[RaportController::class,'raport'])->name('guru.raport');
         Route::get('/create/{id}',[RaportController::class,'create'])->name('guru.create');
@@ -136,6 +143,9 @@ Route::group(['middleware'=>['siswa'],'prefix'=>'/siswa'],function() {
     Route::get('/alumni',[DataSiswaController::class,'alumni'])->name('siswa.alumni');
     Route::get('/guru',[DataSiswaController::class,'guru'])->name('siswa.guru');
     Route::get('/cetak',[DataSiswaController::class,'cetak'])->name('siswa.cetak');
+    Route::get('/profile/{id}',[DataSiswaController::class,'profile'])->name('siswa.profile');
+    Route::put('/updateprofile/{id}',[DataSiswaController::class,'updateprofile'])->name('siswa.updateprofile');
+    Route::put('/changepass/{id}',[DataSiswaController::class,'changepass'])->name('siswa.changepass');
 });
 
 Route::get('/siswa/login', [LoginSiswaController::class,'index'])->name('siswa.login');

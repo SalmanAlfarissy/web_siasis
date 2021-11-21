@@ -61,7 +61,7 @@ function penyebut($nilai) {
             <input type="hidden" value="{{ $semester->tahun }}" name="tahun">
             <a href="{{ route('guru.raport') }}" class="btn bg-red waves-effect">
                 <i class="material-icons">forward</i>
-                <span>Kembali</span></a></a>
+                <span>Kembali</span></a>
             <button type="submit" class="btn bg-cyan waves-effect">
                 <i class="material-icons">print</i>
                 <span>Cetak</span></button>

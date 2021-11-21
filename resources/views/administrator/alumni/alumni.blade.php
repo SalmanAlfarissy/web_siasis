@@ -22,7 +22,10 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="body">
                     <div class="button-demo">
-                        <a href="{{ route('admin.staf.createalumni') }}" class="btn bg-red waves-effect">Add Alumni</a>
+                        <a href="{{ route('admin.staf.createalumni') }}" class="btn bg-red waves-effect">
+                            <i class="material-icons">person_add</i>
+                            <span>Add Alumni</span>
+                        </a>
                     </div>
                 </div>
             </div>

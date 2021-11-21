@@ -22,7 +22,11 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="body">
                     <div class="button-demo">
-                        <a href="{{ route('admin.staf.createjadwal') }}" class="btn bg-red waves-effect">Add Jadwal Pelajaran</a>
+
+                        <a href="{{ route('admin.staf.createjadwal') }}" class="btn bg-red waves-effect">
+                            <i class="material-icons">add</i>
+                            <span>Add Jadwal Pelajaran</span>
+                        </a>
                     </div>
                 </div>
             </div>
