@@ -53,12 +53,12 @@
                     </a>
                 </li>
 
-                <li class="{{ ($page == 'Alumni') ? 'active' : '' }}">
+                {{-- <li class="{{ ($page == 'Alumni') ? 'active' : '' }}">
                     <a href="{{ route('guru.alumni') }}">
                         <i class="material-icons">school</i>
                         <span>Alumni</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="{{ ($page == 'Guru') ? 'active' : '' }}">
                     <a href="{{ route('guru.guru') }}">

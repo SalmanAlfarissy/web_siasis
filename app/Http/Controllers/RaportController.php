@@ -48,7 +48,9 @@ class RaportController extends Controller
             ->leftJoin('semester', 'semester.id', '=', 'pelajarans.semester_id')
             ->leftJoin('matpel', 'matpel.id', '=', 'pelajarans.matpel_id')
             ->select('siswas.*','pelajarans.id as pelajaran_id','pelajarans.semester_id','pelajarans.matpel_id','semester.tahun','semester.semester','matpel.nama_pelajaran')
+            ->distinct('matpel')
             ->get();
+            // dd($raport);
 
         return view('guru.raport.post',[
         'raport' => $raport,
@@ -61,7 +63,7 @@ class RaportController extends Controller
 
     public function store(Request $request){
         // return request()->all();
-        
+
         $pelajaran = $request->pelajaran;
         foreach($pelajaran as $index=>$item){
 

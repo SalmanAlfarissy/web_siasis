@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\AuthAdmin::class,
         'guru' => \App\Http\Middleware\AuthGuru::class,
         'siswa' => \App\Http\Middleware\AuthSiswa::class,
+        'alumni' => \App\Http\Middleware\AuthAlumni::class,
     ];
 }

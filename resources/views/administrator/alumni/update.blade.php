@@ -45,6 +45,7 @@
                                 @enderror
                             </div>
 
+
                             <div class="form-group form-float">
                                 <div class="form-line @error('pekerjaan') focused error @enderror">
                                     <input type="text" class="form-control" name="pekerjaan" required value="{{ $edtalumni->pekerjaan }}">
@@ -56,21 +57,11 @@
                             </div>
 
                             <div class="form-group form-float">
-                                <div class="form-line @error('jabatan') focused error @enderror">
-                                    <input type="text" class="form-control" name="jabatan" required value="{{ $edtalumni->jabatan }}">
-                                    <label class="form-label">Jabatan</label>
+                                <div class="form-line @error('nama_univ_kantor') focused error @enderror">
+                                    <input type="text" class="form-control" name="nama_univ_kantor" required value="{{ $edtalumni->nama_univ_kantor }}">
+                                    <label class="form-label">Nama Instansi</label>
                                 </div>
-                                @error('jabatan')
-                                    <label class="error">{{ $message }}</label>
-                                @enderror
-                            </div>
-
-                            <div class="form-group form-float">
-                                <div class="form-line @error('tahun_lulus') focused error @enderror">
-                                    <input type="text" class="form-control" name="tahun_lulus" required value="{{ $edtalumni->tahun_lulus }}">
-                                    <label class="form-label">Tahun Lulus</label>
-                                </div>
-                                @error('tahun_lulus')
+                                @error('nama_univ_kantor')
                                     <label class="error">{{ $message }}</label>
                                 @enderror
                             </div>
@@ -86,51 +77,44 @@
                             </div>
 
                             <div class="form-group form-float">
-                                <div class="form-line @error('email') focused error @enderror">
-                                    <input type="text" class="form-control" name="email" required value="{{ $edtalumni->email }}">
-                                    <label class="form-label">Email</label>
+                                <div class="form-line @error('jabatan') focused error @enderror">
+                                    <input type="text" class="form-control" name="jabatan" required value="{{ $edtalumni->jabatan }}">
+                                    <label class="form-label">Jabatan</label>
                                 </div>
-                                @error('jurusan')
+                                @error('jabatan')
                                     <label class="error">{{ $message }}</label>
                                 @enderror
                             </div>
 
                             <div class="form-group form-float">
-                                <div class="form-line @error('nohp') focused error @enderror">
-                                    <input type="number" class="form-control" name="nohp" required value="{{ $edtalumni->nohp }}">
-                                    <label class="form-label">NoHp</label>
+                                <div class="form-line @error('tahun_mulai') focused error @enderror">
+                                    <input type="text" class="form-control" name="tahun_mulai" required value="{{ $edtalumni->tahun_mulai }}">
+                                    <label class="form-label">Tahun Mulai</label>
                                 </div>
-                                @error('nohp')
+                                @error('tahun_mulai')
                                     <label class="error">{{ $message }}</label>
                                 @enderror
                             </div>
 
                             <div class="form-group form-float">
-                                <div class="form-line @error('nama_univ') focused error @enderror">
-                                    <input type="text" class="form-control" name="nama_univ" required value="{{ $edtalumni->nama_univ }}">
-                                    <label class="form-label">Nama Universitas</label>
+                                <div class="form-line @error('tahun_selesai') focused error @enderror">
+                                    <input type="text" class="form-control" name="tahun_selesai" required value="{{ $edtalumni->tahun_selesai }}">
+                                    <label class="form-label">Tahun Selesai</label>
                                 </div>
-                                @error('nama_univ')
+                                @error('tahun_selesai')
                                     <label class="error">{{ $message }}</label>
                                 @enderror
                             </div>
 
                             <div class="form-group form-float">
-                                <div class="form-line">
-                                    <textarea name="alamat" cols="30" rows="5" class="form-control no-resize" required="" aria-required="true">{{ $edtalumni->alamat}}</textarea>
-                                    <label class="form-label">Alamat</label>
+                                <div class="form-line @error('alamat_kantor') focused error @enderror">
+                                    <textarea type="text" class="form-control" name="alamat_kantor" required>{{ $edtalumni->alamat_kantor }}</textarea>
+                                    <label class="form-label">Alamat Kantor</label>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
-                                <input type="file" id="foto" name="foto"  value="{{ old('foto') }}">
-                                @error('foto')
+                                @error('alamat_kantor')
                                     <label class="error">{{ $message }}</label>
                                 @enderror
-                        </div>
-                        <div class="form-group">
-                            <img src="{{ asset('gambar/alumni/'.$edtalumni->foto)}}" height="10%" width="20%" alt="" srcset="">
-                        </div>
+                            </div>
 
                             <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
                         </form>

@@ -27,7 +27,7 @@ class InformasiController extends Controller
     public function store(Request $request){
         $validated = $request->validate([
             'judul_info'=>'required|max:255|unique:informasis',
-            'gambar_info'=>'required|image|max:512|mimes:jpeg,png,jpg,gif,svg'
+            'gambar_info'=>'required|image|max:1000|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
         $store = new Informasi();
@@ -58,7 +58,7 @@ class InformasiController extends Controller
 
         $validated = $request->validate([
             'judul_info'=>'max:255',
-            'gambar_info'=>'image|max:512|mimes:jpeg,png,jpg,gif,svg'
+            'gambar_info'=>'image|max:1000|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
         $dtupdate=Informasi::find($id);

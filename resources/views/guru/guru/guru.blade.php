@@ -16,6 +16,7 @@
                         <h2>
                             DAFTAR GURU
                         </h2>
+                        {{ $guru->links() }}
                     </div>
                     <div class="body">
                         <div class="bs-example" data-example-id="media-alignment">
@@ -32,16 +33,25 @@
                                             <strong><a style="color: red">Lahir</a></strong> : {{ $item->tempat_lahir }},{{ date('d F Y', strtotime($item->tgl_lahir)) }}<br/>
                                             <strong><a style="color: red">Gender</a></strong> : {{ $item->gender }}<br/>
                                             <strong><a style="color: red">Jabatan</a></strong> : {{ $item->jabatan }}<br/>
+                                            <strong><a style="color: red">Pangkat/Gol</a></strong> : {{ $item->pangkat_gol }}<br/>
+                                            {{-- <strong><a style="color: red">Alamat</a></strong> : {{ $item->alamat }}<br/> --}}
                                             <strong><a style="color: red">Email</a></strong> : {{ $item->email }}
                                         </p>
                                     </div>
                                 </div>
                             @endforeach
+
                         </div>
+
                     </div>
+
+
                 </div>
+
             </div>
         </div>
     </div>
+
 </section>
+
 @endsection

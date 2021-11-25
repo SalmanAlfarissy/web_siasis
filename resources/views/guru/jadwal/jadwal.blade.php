@@ -29,14 +29,17 @@
 
                                 <thead>
                                     <tr>
-                                        <th><center>Hari</center></th>
-                                        <th><center>Jadwal</b></center></th>
-                                        <th><center>Pelajaran</center></th>
+                                        <th colspan="2"><center>Senin</center></th>
+                                        <th colspan="2"><center>Selasa</center></th>
+                                        <th colspan="2"><center>Rabu</center></th>
+                                        <th colspan="2"><center>Kamis</center></th>
+                                        <th colspan="2"><center>Jumat</center></th>
+                                        <th colspan="2"><center>Sabtu</center></th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    {{ $_data="" }}
+                                    {{-- {{ $_data="" }}
                                     @for ($i = 0; $i < count($pelajaran); $i++)
                                     <tr>
 
@@ -49,7 +52,29 @@
 
                                     </tr>
 
+                                    @endfor --}}
+
+
+                                    {{-- @for ($i = 0; $i < count($pelajaran); $i++)
+                                    <tr>
+
+                                        <td><center><b>{{ $pelajaran[$i]->hari }}</b></center></td>
+                                        <td><center>{{ $pelajaran[$i]->jadwal_masuk }} - {{ $pelajaran[$i]->jadwal_keluar }}</center></td>
+                                        <td><center>{{ $pelajaran[$i]->nama_pelajaran }}</center></td>
+
+                                    </tr>
+
+                                    @endfor --}}
+                                    @for($i = 0; $i < count($pelajaran); $i++)
+                                    <tr>
+                                        @for ($j = 0; $j<6; $j++)
+                                            <td>{{ $pelajaran[$i]->nama_pelajaran }} ({{ $pelajaran[$i]->guru }})</td>
+                                            <td>{{ $pelajaran[$i]->jadwal_masuk }} - {{ $pelajaran[$i]->jadwal_keluar }}</td>
+                                        @endfor
+
+                                    </tr>
                                     @endfor
+
 
                                 </tbody>
                             </table>

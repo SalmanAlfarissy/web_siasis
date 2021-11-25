@@ -12,6 +12,8 @@ class LoginSiswaController extends Controller
         {
             if (!empty(session('siswa'))){
                 return redirect('/siswa/home');
+            }else if(!empty(session('alumni'))){
+                return redirect('/alumni/home');
             }
             return view('login.loginsiswa',[
                 'title'=>'Login',
@@ -31,7 +33,7 @@ class LoginSiswaController extends Controller
 
             if (!empty($auth)){
                 if  (Hash::check($request->password, $auth->password)){
-                    if ($auth->nis == $request->nis){
+                    if ($auth->status == 'Siswa'){
                         session()->put(['siswa'=>[
                             'id'=>$auth->id,
                             'nama'=>$auth->nama,
@@ -40,6 +42,15 @@ class LoginSiswaController extends Controller
                             'foto_siswa'=>$auth->foto_siswa,
                         ]]);
                         return redirect('/siswa/home');
+                    }else{
+                        session()->put(['alumni'=>[
+                            'id'=>$auth->id,
+                            'nama'=>$auth->nama,
+                            'email'=>$auth->email,
+                            'status'=>$auth->status,
+                            'foto_siswa'=>$auth->foto_siswa,
+                        ]]);
+                        return redirect('/alumni/home');
                     }
                 }
 

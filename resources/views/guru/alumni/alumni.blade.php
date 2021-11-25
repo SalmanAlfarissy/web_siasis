@@ -32,7 +32,9 @@
                                             <strong><a style="color: red">Lahir</a></strong> : {{ $item->tempat_lahir }},{{ date('d F Y', strtotime($item->tgl_lahir)) }}<br/>
                                             <strong><a style="color: red">Gender</a></strong> : {{ $item->gender }}<br/>
                                             <strong><a style="color: red">Alamat</a></strong> : {{ $item->alamat }}<br/>
-                                            <strong><a style="color: red">Email</a></strong> : {{ $item->email }}
+                                            <strong><a style="color: red">Email</a></strong> : {{ $item->email }}<br/>
+                                            <strong><a style="color: red">NoHp</a></strong> : {{ $item->nohp }}<br/>
+                                            <strong><a style="color: red">Tahun Lulus</a></strong> : {{ $item->tahun_lulus }}
                                         </p>
                                     </div>
                                 </div>

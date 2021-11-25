@@ -59,9 +59,9 @@
                 {{-- <div class="col-xs-6">
                     <a href="sign-up.html">Register Now!</a>
                 </div> --}}
-                <div class="col-xs-12 align-center">
+                {{-- <div class="col-xs-12 align-center">
                     <a href="#">Forgot Password?</a>
-                </div>
+                </div> --}}
             </div>
         </form>
     </div>

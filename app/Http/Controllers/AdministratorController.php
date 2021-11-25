@@ -275,7 +275,8 @@ class AdministratorController extends Controller
     }
 
     public function list_guru(){
-        $admin=Staf::where('level', 'guru')->get();
+        $admin=Staf::where('level', 'guru')->simplePaginate(5);
+
         return view('guru.guru.guru',[
         'guru' => $admin,
         'page' => 'Guru'

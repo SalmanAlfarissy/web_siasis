@@ -1,4 +1,4 @@
-@extends('layouts.administrator.layout3')
+@extends('layouts.administrator.layout2')
 
 @section('content')
 @include('layouts.administrator.pageloader')

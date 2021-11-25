@@ -1,11 +1,17 @@
 @extends("layouts.siswa.layout2")
 @section("content")
+
 <section class="content">
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-3">
                 <div class="card profile-card">
-
+                    @if (session()->has('success'))
+                        <div class="alert bg-green alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <div class="profile-header">&nbsp;</div>
                     <div class="profile-body">
                         <div class="media image-area">

@@ -1,5 +1,11 @@
 @extends('layouts.login.login')
 @section('content')
+@if (session()->has('success'))
+            <div class="alert bg-green alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                {{ session('success') }}
+            </div>
+@endif
 
 @if (session()->has('LoginError'))
 <div class="alert bg-pink alert-dismissible" role="alert">
@@ -53,9 +59,9 @@
                 {{-- <div class="col-xs-6">
                     <a href="sign-up.html">Register Now!</a>
                 </div> --}}
-                <div class="col-xs-12 align-center">
+                {{-- <div class="col-xs-12 align-center">
                     <a href="#">Forgot Password?</a>
-                </div>
+                </div> --}}
             </div>
         </form>
     </div>

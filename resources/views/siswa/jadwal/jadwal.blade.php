@@ -36,7 +36,7 @@
                                 </thead>
 
                                 <tbody>
-                                    {{ $_data="" }}
+                                    {{-- {{ $_data="" }}
                                     @for ($i = 0; $i < count($pelajaran); $i++)
                                     <tr>
 
@@ -49,7 +49,19 @@
 
                                     </tr>
 
+                                    @endfor --}}
+                                    
+                                    @for ($i = 0; $i < count($pelajaran); $i++)
+                                    <tr>
+
+                                        <td><center><b>{{ $pelajaran[$i]->hari }}</b></center></td>
+                                        <td><center>{{ $pelajaran[$i]->jadwal_masuk }} - {{ $pelajaran[$i]->jadwal_keluar }}</center></td>
+                                        <td><center>{{ $pelajaran[$i]->nama_pelajaran }}</center></td>
+                                        
+                                    </tr>
+
                                     @endfor
+
 
                                 </tbody>
                             </table>

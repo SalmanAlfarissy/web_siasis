@@ -48,7 +48,13 @@
                                         <th>No</th>
                                         <th>NIS</th>
                                         <th>Nama</th>
-                                        <th>Tahun Lulus</th>
+                                        <th>Pekerjaan</th>
+                                        <th>Nama Instansi</th>
+                                        <th>Jurusan</th>
+                                        <th>Jabatan</th>
+                                        <th>Tahun Mulai</th>
+                                        <th>Tahun Selesai</th>
+                                        <th>Alamat Instansi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -60,7 +66,14 @@
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $item->nis }}</td>
                                         <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->tahun_lulus }}</td>
+                                        <td>{{ $item->pekerjaan }}</td>
+                                        <td>{{ $item->nama_univ_kantor }}</td>
+                                        <td>{{ $item->jurusan }}</td>
+                                        <td>{{ $item->jabatan }}</td>
+                                        <td>{{ (empty($item->tahun_mulai)) ? '-' : $item->tahun_mulai }}</td>
+                                        <td>{{ (empty($item->tahun_selesai)) ? '-' : $item->tahun_selesai }}</td>
+                                        <td>{{ $item->alamat_kantor }}</td>
+
                                         <td>
                                                 {{-- <a type="button" class="btn bg-deep-orange btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">print</i>

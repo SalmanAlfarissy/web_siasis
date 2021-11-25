@@ -38,33 +38,31 @@ class AlumniController extends Controller
         $validated = $request->validate([
             'siswa_id'=>'required|max:255',
             'pekerjaan'=>'max:255',
-            'jabatan'=>'max:255',
-            'tahun_lulus'=>'size:4',
+            'nama_univ_kantor'=>'max:255',
             'jurusan'=>'max:255',
-            'email'=>'email:dns|unique:alumnis',
-            'nohp'=>'numeric',
-            'nama_univ'=>'max:255',
+            'jabatan'=>'max:255',
+            'tahun_mulai'=>'size:4',
+            'tahun_selesai'=>'size:4',
+            'alamat_kantor'=>'max:255',
 
-            'foto'=>'required|image|max:512|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
         $store = new Alumni();
         $store -> id = null;
         $store -> siswa_id = $validated['siswa_id'];
         $store -> pekerjaan = ($validated['pekerjaan'] != "") ? $validated['pekerjaan'] : "";
-        $store -> jabatan = ($validated['jabatan'] != "") ? $validated['jabatan'] : "";
-        $store -> tahun_lulus = ($validated['tahun_lulus'] != "") ? $validated['tahun_lulus'] : "";
+        $store -> nama_univ_kantor = ($validated['nama_univ_kantor'] != "") ? $validated['nama_univ_kantor'] : "";
         $store -> jurusan = ($validated['jurusan'] != "") ? $validated['jurusan'] : "";
-        $store -> email = ($validated['email'] != "") ? $validated['email'] : "";
-        $store -> nohp = ($validated['nohp'] != "") ? $validated['nohp'] : "";
-        $store -> nama_univ = ($validated['nama_univ'] != "") ? $validated['nama_univ'] : "";
-        $store -> alamat = ($request-> alamat != "") ? $request-> alamat : "";
+        $store -> jabatan = ($validated['jabatan'] != "") ? $validated['jabatan'] : "";
+        $store -> tahun_mulai = ($validated['tahun_mulai'] != "") ? $validated['tahun_mulai'] : "";
+        $store -> tahun_selesai = ($validated['tahun_selesai'] != "") ? $validated['tahun_selesai'] : "";
+        $store -> alamat_kantor = ($validated['alamat_kantor'] != "") ? $validated['alamat_kantor'] : "";
 
-        $nm = $validated['foto'];
-        $file_name = time().rand(100,99).".".$nm->getClientOriginalExtension();
-        $validated['foto']->move(public_path().'/gambar/alumni',$file_name);
-        $path = $file_name;
-        $store -> foto = $path;
+        // $nm = $validated['foto'];
+        // $file_name = time().rand(100,99).".".$nm->getClientOriginalExtension();
+        // $validated['foto']->move(public_path().'/gambar/alumni',$file_name);
+        // $path = $file_name;
+        // $store -> foto = $path;
         $store -> save();
 
         return redirect('/administrator/staf/data_alumni')->with('success','Create data successfully!!');
@@ -89,32 +87,32 @@ class AlumniController extends Controller
         $validated = $request->validate([
             'siswa_id'=>'required|max:255',
             'pekerjaan'=>'max:255',
-            'jabatan'=>'max:255',
-            'tahun_lulus'=>'size:4',
+            'nama_univ_kantor'=>'max:255',
             'jurusan'=>'max:255',
-            'email'=>'email:dns',
-            'nohp'=>'numeric',
-            'nama_univ'=>'max:255',
+            'jabatan'=>'max:255',
+            'tahun_mulai'=>'size:4',
+            'tahun_selesai'=>'size:4',
+            'alamat_kantor'=>'max:255'
 
-            'foto'=>'image|max:512|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
         $dtupdate=Alumni::find($id);
 
+
         $dtupdate -> siswa_id = $validated['siswa_id'];
         $dtupdate -> pekerjaan = ($validated['pekerjaan'] != "") ? $validated['pekerjaan'] : "";
-        $dtupdate -> jabatan = ($validated['jabatan'] != "") ? $validated['jabatan'] : "";
-        $dtupdate -> tahun_lulus = ($validated['tahun_lulus'] != "") ? $validated['tahun_lulus'] : "";
+        $dtupdate -> nama_univ_kantor = ($validated['nama_univ_kantor'] != "") ? $validated['nama_univ_kantor'] : "";
         $dtupdate -> jurusan = ($validated['jurusan'] != "") ? $validated['jurusan'] : "";
-        $dtupdate -> email = ($validated['email'] != "") ? $validated['email'] : "";
-        $dtupdate -> nohp = ($validated['nohp'] != "") ? $validated['nohp'] : "";
-        $dtupdate -> nama_univ = ($validated['nama_univ'] != "") ? $validated['nama_univ'] : "";
-        $dtupdate -> alamat = ($request-> alamat != "") ? $request-> alamat : "";
+        $dtupdate -> jabatan = ($validated['jabatan'] != "") ? $validated['jabatan'] : "";
+        $dtupdate -> tahun_mulai = ($validated['tahun_mulai'] != "") ? $validated['tahun_mulai'] : "";
+        $dtupdate -> tahun_selesai = ($validated['tahun_selesai'] != "") ? $validated['tahun_selesai'] : "";
+        $dtupdate -> alamat_kantor = ($validated['alamat_kantor'] != "") ? $validated['alamat_kantor'] : "";
 
-        $gbdefault = $dtupdate->foto;
-        ($request->foto != "") ? $request->foto->move(public_path().'/gambar/alumni',$gbdefault) : asset('gambar/alumni/'.$dtupdate->foto);
-        $dtupdate -> foto = $gbdefault;
-
+        // $nm = $validated['foto'];
+        // $file_name = time().rand(100,99).".".$nm->getClientOriginalExtension();
+        // $validated['foto']->move(public_path().'/gambar/alumni',$file_name);
+        // $path = $file_name;
+        // $dtupdate -> foto = $path;
         $dtupdate -> save();
         return redirect('/administrator/staf/data_alumni')->with('success','Update data successfully!!');
 

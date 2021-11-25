@@ -13,7 +13,9 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="body">
                     <div class="button-demo">
-                        <a href="{{ route('guru.raport') }}" class="btn bg-red waves-effect">Daftar Siswa</a>
+                        <a href="{{ route('guru.raport') }}" class="btn bg-red waves-effect">
+                            <i class="material-icons">forward</i>
+                            <span>Kembali</span></a>
                     </div>
                 </div>
             </div>
@@ -59,6 +61,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 @endforeach
                             </div>
                             <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>

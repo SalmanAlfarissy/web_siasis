@@ -148,6 +148,19 @@ Route::group(['middleware'=>['siswa'],'prefix'=>'/siswa'],function() {
     Route::put('/changepass/{id}',[DataSiswaController::class,'changepass'])->name('siswa.changepass');
 });
 
+// ===========================================================================================================================================================
+// alumni
+Route::group(['middleware'=>['alumni'],'prefix'=>'/alumni'],function() {
+    Route::get('/home',[DataSiswaController::class,'index'])->name('alumni.home');
+    Route::get('/event/{id}',[AdministratorController::class,'event'])->name('alumni.event');
+    Route::get('/raport',[DataSiswaController::class,'raport'])->name('alumni.raport');
+    Route::get('/guru',[DataSiswaController::class,'guru'])->name('alumni.guru');
+    Route::get('/cetak',[DataSiswaController::class,'cetak'])->name('alumni.cetak');
+    Route::get('/profile/{id}',[DataSiswaController::class,'profile'])->name('alumni.profile');
+    Route::put('/updateprofile/{id}',[DataSiswaController::class,'updateprofile'])->name('alumni.updateprofile');
+    Route::put('/changepass/{id}',[DataSiswaController::class,'changepass'])->name('alumni.changepass');
+});
+
 Route::get('/siswa/login', [LoginSiswaController::class,'index'])->name('siswa.login');
 Route::post('/siswa/login',[LoginSiswaController::class,'authenticate'])->name('siswa.aut');
 Route::get('/siswa/logout',[LoginSiswaController::class,'logout'])->name('siswa.logout');

@@ -63,7 +63,7 @@
                             <div class="row clearfix">
                                 <div class="col-sm-12 @error('matpel_id') focused error @enderror">
                                     <select class="form-control show-tick" name="matpel_id">
-                                        <option value="{{ $edtpelajaran->matpel_id }}">{{ $edtpelajaran->nama_pelajaran }}</option>
+                                        <option value="{{ $datamatpel->id }}">{{ $datamatpel->nama_pelajaran }}</option>
                                         @foreach ($matpel as $item)
                                         <option value="{{ $item->id }}">{{ $item->nama_pelajaran }}</option>
                                         @endforeach
@@ -78,7 +78,7 @@
                             <div class="row clearfix">
                                 <div class="col-sm-12 @error('semester_id') focused error @enderror">
                                     <select class="form-control show-tick" name="semester_id">
-                                        <option value="{{ $edtpelajaran->semester_id }}">{{ $edtpelajaran->semester }}</option>
+                                        <option value="{{ $datasemester->id }}">{{ $datasemester->semester }}</option>
                                         @foreach ($semester as $item)
                                         <option value="{{ $item->id }}">{{ $item->semester }}</option>
                                         @endforeach

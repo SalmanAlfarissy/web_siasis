@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Matpel;
 use App\Models\Pelajaran;
+use App\Models\Semester;
 use App\Models\Staf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +18,9 @@ class PelajaranController extends Controller
         ->join('semester', 'semester.id', '=', 'pelajarans.semester_id')
         ->join('matpel', 'matpel.id', '=', 'pelajarans.matpel_id')
         ->select('pelajarans.*', 'stafs.nama as guru','kelas.nama_kelas as kelas', 'semester.semester', 'matpel.nama_pelajaran')
+        ->orderBy('id','asc')
         ->get();
+
 
         // $pelajaran2 = Pelajaran::where('staf_id',session('guru.id'))
         // ->join('kelas', 'kelas.id', '=', 'pelajarans.kelas_id')
@@ -91,17 +95,19 @@ class PelajaranController extends Controller
         $staf = Staf::where('level','guru')->get();
 
         $edtpelajaran = DB::table('pelajarans')
+            ->where('pelajarans.id',$id)
             ->join('kelas', 'kelas.id', '=', 'pelajarans.kelas_id')
             ->join('stafs', 'stafs.id', '=', 'pelajarans.staf_id')
-            ->join('semester', 'semester.id', '=', 'pelajarans.kelas_id')
-            ->join('matpel', 'matpel.id', '=', 'pelajarans.kelas_id')
-            ->select('pelajarans.*', 'stafs.nama as guru','kelas.nama_kelas as kelas', 'semester.semester', 'matpel.nama_pelajaran')
-            ->where('pelajarans.id',$id)
+            ->select('pelajarans.*', 'stafs.nama as guru','kelas.nama_kelas as kelas')
             ->first();
+
+            $datasemester=Semester::find($edtpelajaran->semester_id);
+            $datamatpel=Matpel::find($edtpelajaran->matpel_id);
+            // dd($datamatpel);
+
         $page = 'JadwalPelajaran';
 
-        return view('administrator.jadwal.update',compact('edtpelajaran','page','kelas','staf','semester','matpel'));
-
+        return view('administrator.jadwal.update',compact('edtpelajaran','page','kelas','staf','semester','matpel','datasemester','datamatpel'));
 
     }
 
