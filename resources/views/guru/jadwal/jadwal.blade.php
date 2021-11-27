@@ -25,53 +25,37 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                            <table class="table table-bordered table-striped table-hover">
 
                                 <thead>
                                     <tr>
-                                        <th colspan="2"><center>Senin</center></th>
-                                        <th colspan="2"><center>Selasa</center></th>
-                                        <th colspan="2"><center>Rabu</center></th>
-                                        <th colspan="2"><center>Kamis</center></th>
-                                        <th colspan="2"><center>Jumat</center></th>
-                                        <th colspan="2"><center>Sabtu</center></th>
+                                        @foreach ($daftar as $hari=>$item)
+                                        <th colspan="2"><center>{{ $hari }}</center></th>
+                                        @endforeach
+                                    </tr>
+                                    <tr>
+                                        @foreach ($daftar as $hari=>$item)
+                                        <th><center>Jam</center></th>
+                                        <th><center>Pelajaran</center></th>
+                                        @endforeach
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    {{-- {{ $_data="" }}
-                                    @for ($i = 0; $i < count($pelajaran); $i++)
+
+                                    @for($i = 0; $i < $maxcount; $i++)
                                     <tr>
-
-                                        <td><center><b>{{ ($pelajaran[$i]->hari == $_data) ? '' : $pelajaran[$i]->hari }}</b></center></td>
-                                        <td><center>{{ $pelajaran[$i]->jadwal_masuk }} - {{ $pelajaran[$i]->jadwal_keluar }}</center></td>
-                                        <td><center>{{ $pelajaran[$i]->nama_pelajaran }}</center></td>
-                                        @php
-                                            $_data=$pelajaran[$i]->hari;
-                                        @endphp
-
-                                    </tr>
-
-                                    @endfor --}}
+                                        @foreach ($daftar as $hari=>$item)
+                                        @if(!empty($item[$i]))
+                                            <td>{{ $item[$i]->jadwal_masuk }} - {{ $item[$i]->jadwal_keluar }} </td>
+                                            <td>{{ $item[$i]->nama_pelajaran }} ({{ $item[$i]->guru }}) </td>
+                                        @else
+                                            <td></td>
+                                            <td></td>
+                                        @endif
 
 
-                                    {{-- @for ($i = 0; $i < count($pelajaran); $i++)
-                                    <tr>
-
-                                        <td><center><b>{{ $pelajaran[$i]->hari }}</b></center></td>
-                                        <td><center>{{ $pelajaran[$i]->jadwal_masuk }} - {{ $pelajaran[$i]->jadwal_keluar }}</center></td>
-                                        <td><center>{{ $pelajaran[$i]->nama_pelajaran }}</center></td>
-
-                                    </tr>
-
-                                    @endfor --}}
-                                    @for($i = 0; $i < count($pelajaran); $i++)
-                                    <tr>
-                                        @for ($j = 0; $j<6; $j++)
-                                            <td>{{ $pelajaran[$i]->nama_pelajaran }} ({{ $pelajaran[$i]->guru }})</td>
-                                            <td>{{ $pelajaran[$i]->jadwal_masuk }} - {{ $pelajaran[$i]->jadwal_keluar }}</td>
-                                        @endfor
-
+                                        @endforeach
                                     </tr>
                                     @endfor
 

@@ -12,14 +12,35 @@ use Illuminate\Support\Facades\DB;
 class PelajaranController extends Controller
 {
     public function pelajaran(){
+
+        // return session('guru.kelas');
         $pelajaran =  DB::table('pelajarans')
         ->join('kelas', 'kelas.id', '=', 'pelajarans.kelas_id')
         ->join('stafs', 'stafs.id', '=', 'pelajarans.staf_id')
         ->join('semester', 'semester.id', '=', 'pelajarans.semester_id')
         ->join('matpel', 'matpel.id', '=', 'pelajarans.matpel_id')
         ->select('pelajarans.*', 'stafs.nama as guru','kelas.nama_kelas as kelas', 'semester.semester', 'matpel.nama_pelajaran')
-        ->orderBy('id','asc')
+        ->orderByRaw("FIELD(hari,'Senen','Selasa','Rabu','Kamis','Jumat','Sabtu')")
+        ->where('kelas_id',session('guru.kelas'))
+        ->orderBy('jadwal_masuk','ASC')
+
         ->get();
+
+        $daftar=[];
+        $count=[];
+
+        foreach($pelajaran as $index=>$item){
+            $daftar[$item->hari][]=$item;
+        }
+        foreach ($daftar as $item) {
+
+            $count[]=count($item);
+
+        }
+        // return $count;
+        $maxcount=max($count);
+
+
 
 
         // $pelajaran2 = Pelajaran::where('staf_id',session('guru.id'))
@@ -38,7 +59,9 @@ class PelajaranController extends Controller
         }else{
             return view('guru.jadwal.jadwal',[
                 'pelajaran' => $pelajaran,
-                'page' => 'JadwalPelajaran'
+                'page' => 'JadwalPelajaran',
+                'daftar'=>$daftar,
+                'maxcount'=>$maxcount
                 ]);
             // dd($pelajaran2);
         }

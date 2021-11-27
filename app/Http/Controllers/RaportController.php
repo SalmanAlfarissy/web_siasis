@@ -7,6 +7,7 @@ use PDF;
 use App\Models\Siswa;
 
 use App\Models\Raport;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
@@ -15,9 +16,35 @@ class RaportController extends Controller
 {
     public function raport(){
         $semester = DB::table('semester')->get();
-        $murid = Siswa::first();
 
+        $smt=Semester::where('semester',request()->semester)
+        ->where('tahun',request()->tahun)
+        ->first();
+
+        if(!empty($smt))
         $siswa = Siswa::where('status','Siswa')
+            ->where('siswas.staf_id',session('guru.id'))
+            ->where('semester.id',$smt->id)
+            ->join('stafs', 'stafs.id', '=', 'siswas.staf_id')
+            ->join('kelas', 'kelas.id', '=', 'siswas.kelas_id')
+            ->join('pelajarans', 'pelajarans.id', '=', 'siswas.kelas_id')
+            ->join('semester', 'semester.id', '=', 'pelajarans.semester_id')
+            ->leftJoin('raports', function($join) use ($smt){
+                $join->on('raports.siswa_id', '=', 'siswas.id')
+                ->where('raports.semester_id',$smt->id);
+            })
+            ->groupBy('siswas.id')
+            ->select('siswas.*', 'stafs.nama as walikelas','kelas.nama_kelas as kelas','pelajarans.semester_id','semester.tahun','semester.semester',
+            DB::raw('count(raports.id) as jumlah')
+            )
+            ->get();
+        else $siswa = [];
+
+
+
+
+
+        $raport = Siswa::where('status','Siswa')
             ->where('siswas.staf_id',session('guru.id'))
             ->where('semester.semester',request()->semester)
             ->where('semester.tahun',request()->tahun)
@@ -25,13 +52,16 @@ class RaportController extends Controller
             ->join('kelas', 'kelas.id', '=', 'siswas.kelas_id')
             ->join('pelajarans', 'pelajarans.id', '=', 'siswas.kelas_id')
             ->join('semester', 'semester.id', '=', 'pelajarans.semester_id')
-            ->select('siswas.*', 'stafs.nama as walikelas','kelas.nama_kelas as kelas','pelajarans.semester_id','semester.tahun','semester.semester')
+            ->leftJoin('raports', 'raports.siswa_id', '=', 'siswas.id')
+            ->select('siswas.*', 'stafs.nama as walikelas','kelas.nama_kelas as kelas','pelajarans.semester_id','semester.tahun','semester.semester','raports.id as raport_id')
             ->get();
+
+            // return $raport;
 
             return view('guru.raport.raport',[
                 'siswa' => $siswa,
-                'murid' => $murid,
                 'semester' => $semester,
+                'raport' => $raport,
                 'page' => 'Raport',
             ]);
             // dd($murid);
@@ -71,6 +101,7 @@ class RaportController extends Controller
             $store->siswa_id = $request->siswa;
             $store->pelajaran_id = $item;
             $store->nilai = $request->nilai[$index];
+            $store->semester_id = $request->semester_id;
             $store -> save();
         }
         return redirect('/guru/raport')->with('success','Create data successfully!!');
@@ -182,7 +213,7 @@ class RaportController extends Controller
             ->first();
 
         $pdf = App::make('dompdf.wrapper');
-        $pdf = PDF::loadView('siswa.raport.cetak', [
+        $pdf = PDF::loadView('guru.raport.cetak', [
             'raport'=>$raport,
             'semester'=>$semester,
             'siswa'=>$siswa,

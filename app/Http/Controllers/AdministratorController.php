@@ -265,7 +265,7 @@ class AdministratorController extends Controller
     public function alumni(){
         $siswa=Siswa::where('status','Alumni')
         ->join('alumnis','alumnis.siswa_id','siswas.id')
-        ->get();
+        ->paginate(15);
 
         // dd($siswa);
         return view('guru.alumni.alumni',[
@@ -275,7 +275,7 @@ class AdministratorController extends Controller
     }
 
     public function list_guru(){
-        $admin=Staf::where('level', 'guru')->simplePaginate(5);
+        $admin=Staf::where('level', 'guru')->paginate(15);
 
         return view('guru.guru.guru',[
         'guru' => $admin,

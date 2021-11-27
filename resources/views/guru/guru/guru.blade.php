@@ -16,7 +16,7 @@
                         <h2>
                             DAFTAR GURU
                         </h2>
-                        {{ $guru->links() }}
+
                     </div>
                     <div class="body">
                         <div class="bs-example" data-example-id="media-alignment">
@@ -45,7 +45,7 @@
 
                     </div>
 
-
+                <div style="text-align: right; margin-right: 10px">{{ $guru->links() }}</div>
                 </div>
 
             </div>

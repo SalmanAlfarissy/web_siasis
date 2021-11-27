@@ -43,13 +43,30 @@ class DataSiswaController extends Controller
         ->join('semester', 'semester.id', '=', 'pelajarans.semester_id')
         ->join('matpel', 'matpel.id', '=', 'pelajarans.matpel_id')
         ->select('pelajarans.*', 'stafs.nama as guru','kelas.nama_kelas as kelas', 'semester.semester', 'matpel.nama_pelajaran')
-        ->orderBy('id','asc')
+        ->orderByRaw("FIELD(hari,'Senen','Selasa','Rabu','Kamis','Jumat','Sabtu')")
+        ->orderBy('jadwal_masuk','ASC')
+        ->where('kelas_id',session('siswa.kelas'))
         ->get();
 
-        // dd($pelajaran);
+        $daftar=[];
+        $count=[];
+
+        foreach($pelajaran as $index=>$item){
+            $daftar[$item->hari][]=$item;
+        }
+        foreach ($daftar as $item) {
+
+            $count[]=count($item);
+
+        }
+        $maxcount=max($count);
+        // return $maxcount;
+
         return view('siswa.jadwal.jadwal',[
-            'pelajaran' => $pelajaran,
-            'page' => 'JadwalPelajaran'
+                'pelajaran' => $pelajaran,
+                'page' => 'JadwalPelajaran',
+                'daftar'=>$daftar,
+                'maxcount'=>$maxcount
             ]);
     }
 
@@ -205,7 +222,7 @@ class DataSiswaController extends Controller
     public function alumni(){
         $siswa=Siswa::where('status','Alumni')
         ->join('alumnis','alumnis.siswa_id','siswas.id')
-        ->get();
+        ->paginate(15);
 
         // dd($siswa);
         return view('siswa.alumni.alumni',[
@@ -216,7 +233,7 @@ class DataSiswaController extends Controller
 
     public function guru(){
         $guru=Staf::where('level','guru')
-        ->paginate(5);
+        ->paginate(15);
 
         // dd($guru);
         if (session('siswa.status')=="Siswa"){

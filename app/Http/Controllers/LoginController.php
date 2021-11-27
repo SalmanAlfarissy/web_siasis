@@ -30,7 +30,12 @@ class LoginController extends Controller
             'password'=>'required|min:5|max:255'
         ]);
 
-        $auth = Staf::where('nip',$request->nip)->first();
+        $auth = Staf::where('nip',$request->nip)
+        ->leftjoin('pelajarans','pelajarans.staf_id','stafs.id')
+        ->select('stafs.*','pelajarans.kelas_id as kelas_id')
+        ->first();
+
+        // return $auth->kelas_id;
 
         if (!empty($auth)){
             if  (Hash::check($request->password, $auth->password)){
@@ -44,9 +49,11 @@ class LoginController extends Controller
                     ]]);
                     return redirect('/administrator/home');
                 }else {
+
                     session()->put(['guru'=>[
                         'id'=>$auth->id,
                         'nama'=>$auth->nama,
+                        'kelas'=>$auth->kelas_id,
                         'email'=>$auth->email,
                         'level'=>$auth->level,
                         'foto_guru'=>$auth->foto_guru,]]);

@@ -36,6 +36,7 @@ class LoginSiswaController extends Controller
                     if ($auth->status == 'Siswa'){
                         session()->put(['siswa'=>[
                             'id'=>$auth->id,
+                            'kelas'=>$auth->kelas_id,
                             'nama'=>$auth->nama,
                             'email'=>$auth->email,
                             'status'=>$auth->status,

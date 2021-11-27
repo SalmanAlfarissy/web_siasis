@@ -8,7 +8,7 @@
     <title>{{ request()->semester }} ({{ request()->tahun }}/{{ request()->tahun+1 }})</title>
     <style>
         .body{
-            background-image: url(../public/images/logo.png);
+            /* background-image: url(../public/images/logo.png); */
             background-size: 40%;
             background-repeat: no-repeat;
             background-position: center;

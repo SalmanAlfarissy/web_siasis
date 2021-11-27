@@ -16,6 +16,8 @@
                         <h2>
                             DAFTAR ALUMNI
                         </h2>
+
+
                     </div>
                     <div class="body">
                         <div class="bs-example" data-example-id="media-alignment">
@@ -23,24 +25,25 @@
                                 <div class="media">
                                     <div class="media-left media-middle align-center">
                                         <a href="javascript:void(0);">
-                                            <img class="media-object" src="{{ asset('gambar/alumni/'.$item->foto) }}" width="64" height="64">
+                                            <img class="media-object" src="{{ asset('gambar/siswa/'.$item->foto_siswa) }}" width="64" height="64">
                                         </a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="media-heading">{{ $item->nama }}</h4>
                                         <p>
-                                            <strong><a style="color: red">Lahir</a></strong> : {{ $item->tempat_lahir }},{{ date('d F Y', strtotime($item->tgl_lahir)) }}<br/>
-                                            <strong><a style="color: red">Gender</a></strong> : {{ $item->gender }}<br/>
-                                            <strong><a style="color: red">Alamat</a></strong> : {{ $item->alamat }}<br/>
-                                            <strong><a style="color: red">Email</a></strong> : {{ $item->email }}<br/>
-                                            <strong><a style="color: red">NoHp</a></strong> : {{ $item->nohp }}<br/>
-                                            <strong><a style="color: red">Tahun Lulus</a></strong> : {{ $item->tahun_lulus }}
+                                            <strong><a style="color: red">Pekerjaan</a></strong> : {{ $item->pekerjaan }}<br/>
+                                            <strong><a style="color: red">Nama Instansi</a></strong> : {{ $item->nama_univ_kantor }}<br/>
+                                            <strong><a style="color: red">Jurusan</a></strong> : {{ $item->jurusan }}<br/>
+                                            <strong><a style="color: red">Jabatan</a></strong> : {{ $item->jabatan }}<br/>
+                                            <strong><a style="color: red">Tahun Mulai - Selesai</a></strong> : {{ $item->tahun_mulai }} - {{ $item->tahun_selesai }}<br/>
+                                            <strong><a style="color: red">Alamat Instansi</a></strong> : {{ $item->alamat_kantor }}
                                         </p>
                                     </div>
                                 </div>
                             @endforeach
                         </div>
                     </div>
+                    <div style="text-align: right; margin-right: 10px">{{ $siswa->links() }}</div>
                 </div>
             </div>
         </div>

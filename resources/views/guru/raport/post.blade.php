@@ -34,6 +34,7 @@
                         <form id="form_validation" method="POST" novalidate="novalidate" action="{{ route('guru.store') }}" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" value="{{ $siswa->id }}" name="siswa">
+                            <input type="hidden" name="semester_id" value="{{ $raport[0]->semester_id }}">
 
                             <div class="row clearfix">
                                 <div class="col-md-6">
@@ -70,7 +71,6 @@
                 </div>
             </div>
         </div>
-
 
     </div>
 </section>
