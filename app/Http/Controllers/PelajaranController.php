@@ -14,17 +14,28 @@ class PelajaranController extends Controller
     public function pelajaran(){
 
         // return session('guru.kelas');
-        $pelajaran =  DB::table('pelajarans')
-        ->join('kelas', 'kelas.id', '=', 'pelajarans.kelas_id')
-        ->join('stafs', 'stafs.id', '=', 'pelajarans.staf_id')
-        ->join('semester', 'semester.id', '=', 'pelajarans.semester_id')
-        ->join('matpel', 'matpel.id', '=', 'pelajarans.matpel_id')
-        ->select('pelajarans.*', 'stafs.nama as guru','kelas.nama_kelas as kelas', 'semester.semester', 'matpel.nama_pelajaran')
-        ->orderByRaw("FIELD(hari,'Senen','Selasa','Rabu','Kamis','Jumat','Sabtu')")
-        ->where('kelas_id',session('guru.kelas'))
-        ->orderBy('jadwal_masuk','ASC')
-
-        ->get();
+        if (session('admin.level') == 'admin'){
+            $pelajaran =  DB::table('pelajarans')
+            ->join('kelas', 'kelas.id', '=', 'pelajarans.kelas_id')
+            ->join('stafs', 'stafs.id', '=', 'pelajarans.staf_id')
+            ->join('semester', 'semester.id', '=', 'pelajarans.semester_id')
+            ->join('matpel', 'matpel.id', '=', 'pelajarans.matpel_id')
+            ->select('pelajarans.*', 'stafs.nama as guru','kelas.nama_kelas as kelas', 'semester.semester', 'matpel.nama_pelajaran')
+            ->orderByRaw("FIELD(hari,'Senen','Selasa','Rabu','Kamis','Jumat','Sabtu')")
+            ->orderBy('jadwal_masuk','ASC')
+            ->get();
+        }else {
+            $pelajaran =  DB::table('pelajarans')
+            ->join('kelas', 'kelas.id', '=', 'pelajarans.kelas_id')
+            ->join('stafs', 'stafs.id', '=', 'pelajarans.staf_id')
+            ->join('semester', 'semester.id', '=', 'pelajarans.semester_id')
+            ->join('matpel', 'matpel.id', '=', 'pelajarans.matpel_id')
+            ->select('pelajarans.*', 'stafs.nama as guru','kelas.nama_kelas as kelas', 'semester.semester', 'matpel.nama_pelajaran')
+            ->orderByRaw("FIELD(hari,'Senen','Selasa','Rabu','Kamis','Jumat','Sabtu')")
+            ->where('kelas_id',session('guru.kelas'))
+            ->orderBy('jadwal_masuk','ASC')
+            ->get();
+        }
 
         $daftar=[];
         $count=[];
