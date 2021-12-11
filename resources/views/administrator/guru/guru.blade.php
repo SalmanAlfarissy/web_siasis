@@ -49,6 +49,7 @@
                                         <th>NIP</th>
                                         <th>Nama</th>
                                         <th>Email</th>
+                                        <th>Jabatan</th>
                                         <th>Level</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -62,6 +63,7 @@
                                         <td>{{ $item->nip }}</td>
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->email }}</td>
+                                        <td>{{ $item->jabatan }}</td>
                                         <td>{{ $item->level }}</td>
 
                                         <td>

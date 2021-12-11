@@ -6,7 +6,6 @@
     <div class="container-fluid">
         <div class="block-header">
 
-
             <h2>
                 JADWAL PELAJARAN
             </h2>

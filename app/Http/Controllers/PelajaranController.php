@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use App\Models\Matpel;
 use App\Models\Pelajaran;
 use App\Models\Semester;
@@ -14,6 +15,8 @@ class PelajaranController extends Controller
     public function pelajaran(){
 
         // return session('guru.kelas');
+        $kelas=Kelas::get();
+
         if (session('admin.level') == 'admin'){
             $pelajaran =  DB::table('pelajarans')
             ->join('kelas', 'kelas.id', '=', 'pelajarans.kelas_id')
@@ -32,10 +35,11 @@ class PelajaranController extends Controller
             ->join('matpel', 'matpel.id', '=', 'pelajarans.matpel_id')
             ->select('pelajarans.*', 'stafs.nama as guru','kelas.nama_kelas as kelas', 'semester.semester', 'matpel.nama_pelajaran')
             ->orderByRaw("FIELD(hari,'Senen','Selasa','Rabu','Kamis','Jumat','Sabtu')")
-            ->where('kelas_id',session('guru.kelas'))
+            ->where('kelas_id',request()->kelas)
             ->orderBy('jadwal_masuk','ASC')
             ->get();
         }
+
 
         $daftar=[];
         $count=[];
@@ -49,10 +53,13 @@ class PelajaranController extends Controller
 
         }
         // return $count;
-        $maxcount=max($count);
+        if (!empty($count)){
+            $maxcount=max($count);
+        }else{
+            $maxcount=max([0]);
+        }
 
-
-
+        // return $maxcount;
 
         // $pelajaran2 = Pelajaran::where('staf_id',session('guru.id'))
         // ->join('kelas', 'kelas.id', '=', 'pelajarans.kelas_id')
@@ -72,7 +79,8 @@ class PelajaranController extends Controller
                 'pelajaran' => $pelajaran,
                 'page' => 'JadwalPelajaran',
                 'daftar'=>$daftar,
-                'maxcount'=>$maxcount
+                'maxcount'=>$maxcount,
+                'kelas'=>$kelas
                 ]);
             // dd($pelajaran2);
         }

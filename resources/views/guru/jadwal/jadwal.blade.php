@@ -18,9 +18,19 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <h2>
-                            DAFTAR JADWAL SISWA
-                        </h2>
+                        <form class="row clearfix justify-content-center" action="{{ route('guru.pelajaran') }}">
+                            <div class="col-sm-3">
+                                <select class="form-control show-tick" name="kelas">
+                                    <option value="">Pilih Kelas</option>
+                                    @foreach ($kelas as $index=>$item)
+                                    <option value="{{ $item->id }}" @if(request()->kelas == $item->nama_kelas) selected @endif>{{ $item->nama_kelas }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
+                                <i class="material-icons">search</i>
+                            </button>
+                        </form>
 
                     </div>
                     <div class="body">
