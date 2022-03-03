@@ -7,7 +7,6 @@
             <h2>
                 GURU
             </h2>
-
             <div style='text-align:right;'> <a href="{{ route('alumni.home') }}"> Siswa</a>/Guru  </div>
         </div>
         <div class="row clearfix">
@@ -17,7 +16,7 @@
                         <h2>
                             DAFTAR GURU
                         </h2>
-                        {{ $guru->links() }}
+
                     </div>
                     <div class="body">
                         <div class="bs-example" data-example-id="media-alignment">
@@ -43,6 +42,7 @@
                             @endforeach
                         </div>
                     </div>
+                    <div style="text-align: right; margin-right: 10px">{{ $guru->links() }}</div>
                 </div>
             </div>
         </div>

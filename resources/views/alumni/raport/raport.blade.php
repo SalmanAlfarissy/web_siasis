@@ -46,10 +46,10 @@ function penyebut($nilai) {
             <h2>
                 RAPORT
             </h2>
-            <div style='text-align:right;'> <a href="{{ route('siswa.home') }}"> Siswa</a>/Raport  </div>
+            <div style='text-align:right;'> <a href="{{ route('alumni.home') }}"> Siswa</a>/Raport  </div>
         </div>
 
-        <form class="button-demo" action="{{ route('siswa.cetak')}}" target="_blank">
+        <form class="button-demo" action="{{ route('alumni.cetak')}}" target="_blank">
 
             @foreach ($raport as $index=>$item)
                 <input type="hidden" value="{{ $item->semester }}" name="semester">
@@ -68,26 +68,20 @@ function penyebut($nilai) {
                 <div class="card">
                     <div class="header">
 
-                            <form class="row clearfix justify-content-center" action="{{ route('siswa.raport') }}">
+                            <form class="row clearfix justify-content-center" action="{{ route('alumni.raport') }}">
                                 <div class="col-sm-3">
                                     <select class="form-control show-tick" name="tahun">
+                                        <option value="">Pilih Tahun</option>
                                         @foreach ($datasemester as $index=>$item)
-                                        <option value={{ ($item->tahun == request()->tahun) ? $item->tahun : "" }}>{{ ($item->tahun == request()->tahun) ? $item->tahun." / ".$item->tahun+1 : "-- Please select Tahun Pelajaran --" }}</option>
+                                        <option value="{{ $item->tahun }}" @if(request()->tahun == $item->tahun) selected @endif>{{ $item->tahun }} / {{ $item->tahun+1 }}</option>
                                         @endforeach
-
-                                        @foreach ($datasemester as $index=>$item)
-                                        <option value="{{ $item->tahun }}">{{ $item->tahun }} / {{ $item->tahun+1 }}</option>
-                                        @endforeach
-
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
                                     <select class="form-control show-tick" name="semester">
+                                        <option value="">Pilih Semester</option>
                                         @foreach ($datasemester as $index=>$item)
-                                        <option value={{ ($item->semester == request()->semester) ? $item->semester : "" }}>{{ ($item->semester == request()->semester) ? $item->semester : "-- Please select semester --" }}</option>
-                                        @endforeach
-                                        @foreach ($datasemester as $index=>$item)
-                                        <option value="{{ $item->semester }}">{{ $item->semester }}</option>
+                                        <option value="{{ $item->semester }}" @if(request()->semester == $item->semester) selected @endif>{{ $item->semester }}</option>
                                         @endforeach
                                     </select>
                                 </div>
